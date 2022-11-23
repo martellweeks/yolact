@@ -172,9 +172,46 @@ pascal_sbd_dataset = dataset_base.copy({
     'class_names': PASCAL_CLASSES,
 })
 
+PAVEMENT_DEFECT_CLASSES = (
+    'bleeding',
+    'raveling',
+    'crack_transverse',
+    'crack_longitudinal',
+    'crack_edge',
+    'crack_alligator',
+    'crack_block',
+    'shoving',
+    'rutting',
+    'potholes',
+    'patch',
+    'unknown',
+    'crack_corner',
+    'spalling',
+)
 
+A14_pavement_dataset = dataset_base.copy({
+    'name': 'A14 Pavement Defect Dataset',
 
+    'train_images': '/home/cituser/Desktop/sp973/pavement-defect-detection/data/train',
+    'valid_images': '/home/cituser/Desktop/sp973/pavement-defect-detection/data/val',
+    
+    'train_info': '/home/cituser/Desktop/sp973/pavement-defect-detection/data/annotations/train_filtered.json',
+    'valid_info': '/home/cituser/Desktop/sp973/pavement-defect-detection/data/annotations/val_filtered.json',
 
+    'has_gt': True,
+    'class_names': PAVEMENT_DEFECT_CLASSES,
+})
+
+A14_pavement_test_dataset = dataset_base.copy({
+    'name': 'A14 Pavement Defect Test Dataset',
+
+    'valid_images': '/home/cituser/Desktop/sp973/pavement-defect-detection/data/test',
+    
+    'valid_info': '/home/cituser/Desktop/sp973/pavement-defect-detection/data/annotations/test_filtered.json',
+
+    'has_gt': True,
+    'class_names': PAVEMENT_DEFECT_CLASSES,
+})
 
 # ----------------------- TRANSFORMS ----------------------- #
 
@@ -657,8 +694,8 @@ yolact_base_config = coco_base_config.copy({
     'name': 'yolact_base',
 
     # Dataset stuff
-    'dataset': coco2017_dataset,
-    'num_classes': len(coco2017_dataset.class_names) + 1,
+    'dataset': A14_pavement_dataset,
+    'num_classes': len(A14_pavement_dataset.class_names) + 1,
 
     # Image Size
     'max_size': 550,
